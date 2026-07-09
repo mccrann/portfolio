@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Doc Patch</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="navbar.css">
+</head>
+<body>
+  <header id="site-header"></header>
+
+  <main>
+    <section id="overview" class="content-block">
+      <h2>DocPatch AI</h2>
+
+
+<p>AI-assisted documentation updates from code changes.</p>
+
+<p><strong>What it does:</strong></p>
+<ul>
+  <li>Reads recent GitHub commits and pull requests</li>
+  <li>Checks the documentation repo for affected pages</li>
+  <li>Drafts suggested Markdown updates</li>
+  <li>Opens a pull request for human review</li>
+  <li>Posts a Slack summary when review is ready</li>
+</ul>
+
+<p><strong>Why I built it:</strong></p>
+<p>Documentation drifts when product changes faster than help content. This tool reduces that gap without letting AI publish unchecked.</p>
+
+<p><strong>Human-in-the-loop by design:</strong></p>
+<p>AI can detect, draft, and explain. A person still owns accuracy, tone, and release timing.</p>
+    </section>
+  </main>
+
+  <script src="./navbar.js"></script>
+  <script>
+    window.renderNavbar('site-header');
+  </script>
+</body>
+</html>
