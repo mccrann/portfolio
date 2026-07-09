@@ -27,7 +27,6 @@ function renderNavbar(containerId = 'site-header') {
   container.innerHTML = `
     <div class="navbar">
       <h1>Karen McCrann</h1>
-      <h2>I build thoughtful tools for support, engineering, documentation, and AI collaboration.</h2>
       <nav aria-label="Primary">
         ${navMarkup}
       </nav>
