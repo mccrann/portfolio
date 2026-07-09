@@ -1,0 +1,14 @@
+{
+  "name": "portfolio",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "start:http": "python3 -m http.server 8000",
+    "cypress:run": "cypress run",
+    "test": "start-server-and-test start:http 8000 cypress:run"
+  },
+  "devDependencies": {
+    "cypress": "^13.17.0",
+    "start-server-and-test": "^2.0.0"
+  }
+}
