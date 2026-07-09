@@ -5,19 +5,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Portfolio</title>
   <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="navbar.css">
 </head>
 <body>
-  <header>
-    <div>
-      <h1>My Portfolio</h1>
-      <nav>
-        <a href="#about">About</a>
-        <a href="#projects">Projects</a>
-        <a href="#contact">Contact</a>
-      </nav>
-    </div>
-  </header>
-
+  <header id="site-header"></header>
   <aside class="sidebar">
     <h2>Navigation</h2>
     <ul>
@@ -34,5 +25,10 @@
       <p>This is a simple portfolio layout with a header, navigation bar, and a left sidebar for quick links.</p>
     </section>
   </main>
+
+  <script src="./navbar.js"></script>
+  <script>
+    window.renderNavbar('site-header');
+  </script>
 </body>
 </html>
