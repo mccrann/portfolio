@@ -1,0 +1,3 @@
+The agent should think in terms of business tasks. The application should think in terms of implementation details.
+
+TextExpander is an absolute MUST for developers. It's not an efficinet use of time to type out concole.log('thing', thing') over and over again (for example). Instead I use ccopy my varibale name and type ;cl.
