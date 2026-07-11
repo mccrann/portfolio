@@ -10,3 +10,34 @@ The agent is responsible for judgement, not execution. It decides what documenta
 
 On a deeper level, we are as humans recreating our own existence with software engineering. we have basic functions to do mundane tasks, think CRON jobs, schedulers, data retreival. Then we have the next alyer which actually makes decisions, if this do this, else do this. The next level above that can manipulate and compare data (does the date of this meeting coincide with the date of the next meeting? if so we need to tell our human about it). And now with the event horizon of AI we are adding yet another layer - reasoning. 
 To me these are directly mappable onto the human experisnece. basic functions - breathing, heartbeat. NExt layer which makes decisions - is the body hydrated? no? make human feel thirsty. energy running low? make human sleepy. Then we have the pattern matching subconscious/semi-conscious layer. and finally our reasonaing selves.
+
+
+          User
+            │
+            ▼
+      Next.js Frontend
+            │
+            ▼
+      Application Layer
+      ┌───────────────┐
+      │ GitHub        │
+      │ Capabilities  │
+      └───────────────┘
+            ▲
+            │
+     Agent Tools
+            ▲
+            │
+     KB Docbot Agent
+            │
+            ▼
+     Structured Decision
+            │
+            ▼
+     GitHub Documentation PR
+            │
+            ▼
+     Netlify Preview
+            │
+            ▼
+       Human Review
