@@ -44,3 +44,68 @@ To me these are directly mappable onto the human experisnece. basic functions - 
 
 For the prototype, GitHub is enough to keep track of what Docbot has already processed. PR links, labels and review history give me a useful audit trail without adding a database I do not need yet. At a larger scale, I would move workflow state, retries, feedback and reporting into a database, while GitHub would remain the source of truth for the documentation changes themselves.
 Before adding memory and feedback loops, I added unit tests around the workflow orchestration and GitHub capabilities to ensure future features could be added safely.
+
+
+ABOUT DOCBOT (from co-pilot)
+KB DocBot
+What this app does
+KB DocBot watches recently merged product PRs in smth-payments, asks an OpenAI agent whether customer-facing docs need to change, reads the current docs from smth-docs, and if needed opens a PR in smth-docs with the suggested updates.
+
+The flow is:
+
+Fetch merged PRs from the product repo.
+Send those PRs to the agent.
+Fetch relevant help docs from the docs repo.
+Decide whether docs should change.
+If needed, create a branch, update Markdown files, and open a docs PR.
+Main code paths
+Frontend entry and controls:
+
+page.tsx
+updateButton.tsx
+runAgent.tsx
+createDocumentationPrs.tsx
+Server routes:
+
+route.ts
+route.ts
+route.ts
+route.ts
+GitHub and agent logic:
+
+fetch-merged-prs.ts
+fetch-help-docs.ts
+create-documentation.ts
+github-fetch.ts
+docbot-agent.ts
+run-docbot.ts
+fetch-help-docs-tool.ts
+What broke
+1. GitHub auth was using the wrong model
+The app originally relied on a personal access token flow. That caused permission problems for GitHub write actions, especially when trying to create refs and PRs.
+
+2. GitHub App private key format was wrong
+The GitHub App key had to be stored as a single-line env value with escaped newlines. Multiline formatting caused signing errors like Invalid keyData.
+
+3. A client component imported server-only GitHub code
+UpdateButton imported server-side GitHub logic directly, which broke Next.js rendering because server-only modules cannot be bundled into client
+
+about docbot (from chaptgpt)
+
+
+KB Docbot
+
+"An AI documentation assistant that keeps customer help docs in sync with product changes."
+
+The problem
+
+Every product changes over time, but documentation rarely keeps up. Product teams ship features, bug fixes and behavioural changes every day, leaving support articles and help centres to slowly drift out of date.
+
+
+
+
+
+
+
+
+
