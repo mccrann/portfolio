@@ -43,3 +43,4 @@ To me these are directly mappable onto the human experisnece. basic functions - 
        Human Review
 
 For the prototype, GitHub is enough to keep track of what Docbot has already processed. PR links, labels and review history give me a useful audit trail without adding a database I do not need yet. At a larger scale, I would move workflow state, retries, feedback and reporting into a database, while GitHub would remain the source of truth for the documentation changes themselves.
+Before adding memory and feedback loops, I added unit tests around the workflow orchestration and GitHub capabilities to ensure future features could be added safely.
