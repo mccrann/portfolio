@@ -642,8 +642,7 @@ main {
 }
 
 /* Existing project and content pages */
-
-.content-block:not(.hero):not(.section):not(.contact-section) {
+.content-block:not(.hero):not(.section):not(.contact-section):not(.docbot-hero):not(.case-jump-nav):not(.project-snapshot):not(.case-section):not(.project-next) {
   padding-block: clamp(2.5rem, 6vw, 5rem);
 }
 
@@ -1844,5 +1843,89 @@ main {
   .memory-panel,
   .reflection-panel {
     padding: 1.5rem;
+  }
+}
+.demo-robot-link {
+  position: relative;
+  z-index: 5;
+  display: block;
+  width: min(500px, 96%);
+  margin: -3.5rem -2.5rem 0 auto;
+  border-radius: 28px;
+  text-decoration: none;
+  transform: rotate(1deg);
+  transition:
+    transform 180ms ease,
+    filter 180ms ease;
+}
+
+.demo-robot-link img {
+  display: block;
+  width: 100%;
+  height: auto;
+  filter:
+    drop-shadow(0 18px 22px rgba(25, 53, 45, 0.18));
+}
+
+.demo-robot-link:hover {
+  filter: brightness(1.04);
+  transform:
+    rotate(-1deg)
+    translateY(-7px)
+    scale(1.025);
+}
+
+.demo-robot-link:focus-visible {
+  outline: 4px solid var(--coral);
+  outline-offset: 5px;
+}
+
+@media (max-width: 700px) {
+  .demo-robot-link {
+    width: min(460px, 100%);
+    margin:
+      -1.5rem
+      auto
+      0;
+  }
+}
+.docbot-hero {
+  min-height: auto;
+  padding-block: clamp(3.5rem, 6vw, 5.5rem);
+}
+
+.project-snapshot {
+  padding-block: clamp(2rem, 4vw, 3.5rem);
+}
+
+.case-section {
+  padding-block: clamp(3.25rem, 6vw, 5.5rem);
+}
+
+.production-section {
+  margin-block: clamp(3rem, 6vw, 5.5rem);
+  padding-block: clamp(3.5rem, 6vw, 5.5rem);
+}
+
+.production-section > .content-block {
+  padding-block: 0;
+}
+
+.project-next {
+  padding-block: clamp(3rem, 6vw, 5rem);
+}
+
+@media (max-width: 700px) {
+  .docbot-hero {
+    padding-block: 3rem 4rem;
+  }
+
+  .case-section {
+    padding-block: 3.5rem;
+  }
+
+  .production-section {
+    margin-block: 3.5rem;
+    padding-block: 3.5rem;
   }
 }
