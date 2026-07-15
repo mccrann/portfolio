@@ -1,0 +1,85 @@
+@use 'variables' as *;
+
+.hero {
+  background-color: $color-green;
+  color: $color-white;
+  padding: $space-24 $space-6 $space-20;
+  position: relative;
+  overflow: hidden;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background-color: $color-yellow;
+  }
+
+  &__inner {
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  &__eyebrow {
+    display: block;
+    font-size: $font-size-sm;
+    font-weight: $font-weight-semibold;
+    letter-spacing: $letter-spacing-wider;
+    text-transform: uppercase;
+    color: $color-yellow;
+    margin-bottom: $space-4;
+  }
+
+  &__name {
+    font-size: $font-size-4xl;
+    font-weight: $font-weight-black;
+    letter-spacing: $letter-spacing-tight;
+    line-height: 1;
+    color: $color-white;
+    margin-bottom: $space-6;
+  }
+
+  &__tagline {
+    font-size: $font-size-lg;
+    font-weight: $font-weight-normal;
+    line-height: $line-height-base;
+    color: rgba($color-white, 0.9);
+    max-width: 640px;
+    margin-bottom: $space-4;
+  }
+
+  &__sub {
+    font-size: $font-size-base;
+    color: rgba($color-white, 0.7);
+    max-width: 600px;
+    margin-bottom: $space-10;
+  }
+
+  &__actions {
+    display: flex;
+    gap: $space-4;
+    flex-wrap: wrap;
+  }
+
+  @media (max-width: $bp-md) {
+    padding: $space-16 $space-4 $space-12;
+
+    &__name {
+      font-size: $font-size-3xl;
+    }
+
+    &__tagline {
+      font-size: $font-size-md;
+    }
+  }
+
+  @media (max-width: $bp-sm) {
+    padding: $space-12 $space-4 $space-10;
+
+    &__name {
+      font-size: $font-size-2xl;
+    }
+  }
+}

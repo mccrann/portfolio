@@ -1,0 +1,57 @@
+@use 'variables' as *;
+
+.page-header {
+  background-color: $color-green;
+  color: $color-white;
+  padding: $space-16 $space-6 $space-12;
+  position: relative;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background-color: $color-yellow;
+  }
+
+  &__inner {
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  h1 {
+    font-size: $font-size-3xl;
+    font-weight: $font-weight-black;
+    letter-spacing: $letter-spacing-tight;
+    color: $color-white;
+    margin-bottom: $space-4;
+  }
+
+  p {
+    font-size: $font-size-md;
+    color: rgba($color-white, 0.8);
+    max-width: 600px;
+    margin-bottom: 0;
+  }
+
+  @media (max-width: $bp-md) {
+    padding: $space-12 $space-4 $space-8;
+
+    h1 {
+      font-size: $font-size-2xl;
+    }
+  }
+}
+
+.page-body {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: $space-12 $space-6;
+  width: 100%;
+
+  @media (max-width: $bp-md) {
+    padding: $space-8 $space-4;
+  }
+}

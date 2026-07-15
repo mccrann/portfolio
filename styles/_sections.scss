@@ -1,0 +1,113 @@
+@use 'variables' as *;
+
+.content-block {
+  h2 {
+    font-size: $font-size-2xl;
+    font-weight: $font-weight-bold;
+    color: $color-black;
+    margin-bottom: $space-6;
+    padding-bottom: $space-4;
+    border-bottom: 3px solid $color-yellow;
+  }
+
+  h3 {
+    font-size: $font-size-xl;
+    font-weight: $font-weight-bold;
+    color: $color-green;
+    margin-top: $space-8;
+    margin-bottom: $space-3;
+  }
+
+  p {
+    font-size: $font-size-md;
+    line-height: $line-height-loose;
+    color: $color-gray-700;
+    max-width: 680px;
+    margin-bottom: $space-5;
+  }
+
+  ul,
+  ol {
+    padding-left: $space-6;
+    margin-bottom: $space-6;
+
+    li {
+      font-size: $font-size-md;
+      line-height: $line-height-loose;
+      color: $color-gray-700;
+      margin-bottom: $space-3;
+
+      &::marker {
+        color: $color-green;
+      }
+    }
+  }
+
+  strong {
+    color: $color-black;
+    font-weight: $font-weight-semibold;
+  }
+
+  a {
+    color: $color-green;
+    text-decoration-color: rgba($color-green, 0.3);
+
+    &:hover,
+    &:focus {
+      color: $color-green-mid;
+      text-decoration-color: currentColor;
+    }
+  }
+}
+
+.app-list {
+  list-style: none;
+  padding: 0;
+  margin: $space-6 0;
+
+  li {
+    padding: 0;
+    margin: 0;
+  }
+
+  a {
+    display: block;
+    padding: $space-5 $space-6;
+    margin-bottom: $space-3;
+    background-color: $color-gray-100;
+    border-left: 4px solid $color-green;
+    border-radius: 0 $radius-md $radius-md 0;
+    color: $color-black;
+    text-decoration: none;
+    font-weight: $font-weight-medium;
+    font-size: $font-size-md;
+    transition: background-color $transition-fast, border-left-color $transition-fast, transform $transition-fast;
+
+    &:hover,
+    &:focus {
+      background-color: $color-green-pale;
+      border-left-color: $color-yellow;
+      transform: translateX($space-1);
+      text-decoration: none;
+    }
+
+    &:focus-visible {
+      outline: 2px solid $color-yellow;
+      outline-offset: 2px;
+    }
+  }
+}
+
+.callout {
+  margin-top: $space-8;
+  padding: $space-6;
+  background-color: $color-yellow-light;
+  border-left: 4px solid $color-yellow;
+  border-radius: 0 $radius-md $radius-md 0;
+
+  p {
+    margin: 0;
+    font-size: $font-size-base;
+    color: $color-gray-700;
+  }
+}

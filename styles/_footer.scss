@@ -1,0 +1,75 @@
+@use 'variables' as *;
+
+.footer {
+  background-color: $color-black;
+  color: rgba($color-white, 0.65);
+  padding: $space-10 $space-6;
+  margin-top: auto;
+
+  &__inner {
+    max-width: 900px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: $space-6;
+    flex-wrap: wrap;
+  }
+
+  &__name {
+    font-size: $font-size-lg;
+    font-weight: $font-weight-bold;
+    color: $color-white;
+    letter-spacing: $letter-spacing-tight;
+  }
+
+  &__links {
+    display: flex;
+    align-items: center;
+    gap: $space-6;
+    flex-wrap: wrap;
+  }
+
+  &__link {
+    color: rgba($color-white, 0.7);
+    text-decoration: none;
+    font-size: $font-size-sm;
+    font-weight: $font-weight-medium;
+    letter-spacing: $letter-spacing-wide;
+    text-transform: uppercase;
+    display: inline-flex;
+    align-items: center;
+    gap: $space-2;
+    transition: color $transition-fast;
+
+    &:hover,
+    &:focus {
+      color: $color-yellow;
+      text-decoration: none;
+    }
+
+    &:focus-visible {
+      outline: 2px solid $color-yellow;
+      outline-offset: 2px;
+      border-radius: $radius-sm;
+    }
+  }
+
+  &__copy {
+    width: 100%;
+    font-size: $font-size-xs;
+    color: rgba($color-white, 0.35);
+    margin-top: $space-6;
+    padding-top: $space-6;
+    border-top: 1px solid rgba($color-white, 0.1);
+  }
+
+  @media (max-width: $bp-sm) {
+    padding: $space-8 $space-4;
+
+    &__inner {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+  }
+}

@@ -1,0 +1,23 @@
+// ==============================
+// Karen McCrann Portfolio
+// Main SCSS Entry Point
+// ==============================
+
+// 1. Variables (no output, just definitions)
+@use 'variables' as *;
+
+// 2. Reset
+@use 'reset';
+
+// 3. Base styles
+@use 'base';
+
+// 4. Layout
+@use 'layout';
+
+// 5. Components
+@use 'navbar';
+@use 'hero';
+@use 'sections';
+@use 'buttons';
+@use 'footer';

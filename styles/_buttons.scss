@@ -1,0 +1,73 @@
+@use 'variables' as *;
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: $space-2;
+  padding: $space-3 $space-6;
+  border-radius: $radius-full;
+  font-family: $font-sans;
+  font-size: $font-size-sm;
+  font-weight: $font-weight-semibold;
+  letter-spacing: $letter-spacing-wide;
+  text-transform: uppercase;
+  text-decoration: none;
+  cursor: pointer;
+  border: 2px solid transparent;
+  transition:
+    background-color $transition-fast,
+    color $transition-fast,
+    border-color $transition-fast,
+    transform $transition-fast;
+
+  &:focus-visible {
+    outline: 2px solid $color-yellow;
+    outline-offset: 3px;
+  }
+
+  &:active {
+    transform: translateY(1px);
+  }
+
+  &--primary {
+    background-color: $color-yellow;
+    color: $color-black;
+    border-color: $color-yellow;
+
+    &:hover,
+    &:focus {
+      background-color: $color-yellow-dark;
+      border-color: $color-yellow-dark;
+      color: $color-black;
+      text-decoration: none;
+    }
+  }
+
+  &--outline {
+    background-color: transparent;
+    color: $color-white;
+    border-color: rgba($color-white, 0.5);
+
+    &:hover,
+    &:focus {
+      background-color: rgba($color-white, 0.1);
+      border-color: $color-white;
+      color: $color-white;
+      text-decoration: none;
+    }
+  }
+
+  &--green {
+    background-color: $color-green;
+    color: $color-white;
+    border-color: $color-green;
+
+    &:hover,
+    &:focus {
+      background-color: $color-green-mid;
+      border-color: $color-green-mid;
+      color: $color-white;
+      text-decoration: none;
+    }
+  }
+}

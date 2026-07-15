@@ -3,36 +3,53 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>KB DocBot</title>
+  <title>KB DocBot — Karen McCrann</title>
   <link rel="stylesheet" href="styles.css">
-  <link rel="stylesheet" href="navbar.css">
 </head>
 <body>
   <header id="site-header"></header>
 
+  <div class="page-header">
+    <div class="page-header__inner">
+      <h1>KB DocBot</h1>
+      <p>AI-assisted documentation updates from code changes.</p>
+    </div>
+  </div>
+
   <main>
-    <section id="overview" class="content-block">
-      <h2>KB DocBot</h2>
+    <div class="page-body">
+      <section id="overview" class="content-block">
+        <h2>KB DocBot</h2>
 
+        <p>AI-assisted documentation updates from code changes.</p>
 
-<p>AI-assisted documentation updates from code changes.</p>
+        <h3>What it does</h3>
+        <ul>
+          <li>Reads recent GitHub commits and pull requests</li>
+          <li>Checks the documentation repo for affected pages</li>
+          <li>Drafts suggested Markdown updates</li>
+          <li>Opens a pull request for human review</li>
+          <li>Posts a Slack summary when review is ready</li>
+        </ul>
 
-<p><strong>What it does:</strong></p>
-<ul>
-  <li>Reads recent GitHub commits and pull requests</li>
-  <li>Checks the documentation repo for affected pages</li>
-  <li>Drafts suggested Markdown updates</li>
-  <li>Opens a pull request for human review</li>
-  <li>Posts a Slack summary when review is ready</li>
-</ul>
+        <h3>Why I built it</h3>
+        <p>Documentation drifts when product changes faster than help content. This tool reduces that gap without letting AI publish unchecked.</p>
 
-<p><strong>Why I built it:</strong></p>
-<p>Documentation drifts when product changes faster than help content. This tool reduces that gap without letting AI publish unchecked.</p>
-
-<p><strong>Human-in-the-loop by design:</strong></p>
-<p>AI can detect, draft, and explain. A person still owns accuracy, tone, and release timing.</p>
-    </section>
+        <h3>Human-in-the-loop by design</h3>
+        <p>AI can detect, draft, and explain. A person still owns accuracy, tone, and release timing.</p>
+      </section>
+    </div>
   </main>
+
+  <footer class="footer">
+    <div class="footer__inner">
+      <span class="footer__name">Karen McCrann</span>
+      <div class="footer__links">
+        <a href="https://www.linkedin.com/in/karen-m-b85bb5241/" target="_blank" rel="noopener noreferrer" class="footer__link">LinkedIn</a>
+      </div>
+      <p class="footer__copy">&copy; 2025 Karen McCrann. All rights reserved.</p>
+    </div>
+  </footer>
 
   <script src="./navbar.js"></script>
   <script>

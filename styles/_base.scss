@@ -1,0 +1,77 @@
+@use 'variables' as *;
+
+body {
+  font-family: $font-sans;
+  font-size: $font-size-base;
+  font-weight: $font-weight-normal;
+  line-height: $line-height-base;
+  color: $color-black;
+  background-color: $color-white;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+main {
+  flex: 1;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: $font-sans;
+  font-weight: $font-weight-bold;
+  line-height: $line-height-tight;
+  letter-spacing: $letter-spacing-tight;
+  color: $color-black;
+}
+
+p {
+  margin-bottom: $space-4;
+  color: $color-gray-700;
+  line-height: $line-height-loose;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
+a {
+  color: $color-green;
+  text-decoration: underline;
+  text-decoration-color: transparent;
+  text-underline-offset: 3px;
+  transition: color $transition-fast, text-decoration-color $transition-fast;
+
+  &:hover,
+  &:focus {
+    color: $color-green-mid;
+    text-decoration-color: currentColor;
+  }
+
+  &:focus-visible {
+    outline: 2px solid $color-yellow;
+    outline-offset: 2px;
+    border-radius: $radius-sm;
+  }
+}
+
+ul,
+ol {
+  padding-left: $space-6;
+  margin-bottom: $space-4;
+
+  li {
+    margin-bottom: $space-2;
+    color: $color-gray-700;
+    line-height: $line-height-loose;
+  }
+}
+
+strong {
+  font-weight: $font-weight-semibold;
+  color: $color-black;
+}

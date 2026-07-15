@@ -1,0 +1,151 @@
+@use 'variables' as *;
+
+.navbar {
+  position: sticky;
+  top: 0;
+  z-index: $z-navbar;
+  background-color: $color-black;
+  padding: $space-4 $space-6;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: $space-4;
+
+  &__brand {
+    text-decoration: none;
+    color: $color-white;
+    font-size: $font-size-lg;
+    font-weight: $font-weight-black;
+    letter-spacing: $letter-spacing-tight;
+    white-space: nowrap;
+    text-decoration-color: transparent;
+
+    span {
+      color: $color-yellow;
+    }
+
+    &:hover,
+    &:focus {
+      color: $color-white;
+      text-decoration-color: transparent;
+    }
+
+    &:focus-visible {
+      outline: 2px solid $color-yellow;
+      outline-offset: 3px;
+      border-radius: $radius-sm;
+    }
+  }
+
+  nav {
+    display: flex;
+    align-items: center;
+    gap: $space-1;
+  }
+
+  nav a {
+    color: rgba($color-white, 0.8);
+    text-decoration: none;
+    font-size: $font-size-sm;
+    font-weight: $font-weight-medium;
+    letter-spacing: $letter-spacing-wide;
+    text-transform: uppercase;
+    padding: $space-2 $space-3;
+    border-radius: $radius-sm;
+    transition: color $transition-fast, background-color $transition-fast;
+    position: relative;
+
+    &::after {
+      content: '';
+      position: absolute;
+      bottom: 2px;
+      left: $space-3;
+      right: $space-3;
+      height: 2px;
+      background-color: $color-yellow;
+      transform: scaleX(0);
+      transition: transform $transition-base;
+      transform-origin: left center;
+    }
+
+    &:hover {
+      color: $color-white;
+      background-color: rgba($color-white, 0.06);
+
+      &::after {
+        transform: scaleX(1);
+      }
+    }
+
+    &:focus-visible {
+      outline: 2px solid $color-yellow;
+      outline-offset: 2px;
+    }
+
+    &.active {
+      color: $color-yellow;
+
+      &::after {
+        transform: scaleX(1);
+      }
+    }
+  }
+
+  &__toggle {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: $space-2;
+    line-height: 1;
+
+    span {
+      display: block;
+      width: 22px;
+      height: 2px;
+      background-color: $color-white;
+      border-radius: $radius-full;
+      transition: transform $transition-base, opacity $transition-base;
+    }
+
+    &:focus-visible {
+      outline: 2px solid $color-yellow;
+      outline-offset: 2px;
+      border-radius: $radius-sm;
+    }
+  }
+
+  @media (max-width: $bp-md) {
+    flex-wrap: wrap;
+    padding: $space-4;
+
+    &__toggle {
+      display: flex;
+    }
+
+    nav {
+      display: none;
+      width: 100%;
+      flex-direction: column;
+      align-items: flex-start;
+      padding-top: $space-4;
+      border-top: 1px solid rgba($color-white, 0.1);
+
+      &.open {
+        display: flex;
+      }
+
+      a {
+        width: 100%;
+        padding: $space-3 $space-4;
+        font-size: $font-size-base;
+
+        &::after {
+          display: none;
+        }
+      }
+    }
+  }
+}

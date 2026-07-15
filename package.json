@@ -3,12 +3,16 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "start:http": "python3 -m http.server 8000",
+    "build:css": "sass styles/main.scss styles.css --no-source-map",
+    "watch:css": "sass --watch styles/main.scss:styles.css --no-source-map",
+    "start:http": "npm run build:css && python3 -m http.server 8000",
+    "start": "npm run build:css && python3 -m http.server 8000",
     "cypress:run": "cypress run",
-    "test": "start-server-and-test start:http 8000 cypress:run"
+    "test": "start-server-and-test start 8000 cypress:run"
   },
   "devDependencies": {
     "cypress": "^13.17.0",
+    "sass": "^1.101.0",
     "start-server-and-test": "^2.0.0"
   }
 }
