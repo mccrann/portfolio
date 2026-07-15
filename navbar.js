@@ -1,37 +1,76 @@
-function renderNavbar(containerId = 'site-header') {
-  const container = document.getElementById(containerId);
+function renderNavbar(headerId) {
+  const header = document.getElementById(headerId)
 
-  if (!container) {
-    return;
+  if (!header) {
+    return
   }
 
-  const path = window.location.pathname.replace(/\/$/, '');
-  const normalizedPath = path === '' ? '/' : path.replace(/\.html$/i, '');
-  const currentPage = normalizedPath === '' ? '/' : normalizedPath;
+  const currentPath =
+    window.location.pathname.replace(/\/$/, '') || '/'
 
   const links = [
-    { href: '/', label: 'Home' },
-    { href: '/writing', label: 'Writing' },
-    { href: '/apps', label: 'Apps' },
-    { href: '/workbench', label: 'Workbench' },
-    { href: '/creative', label: 'Creative' }
-  ];
+    {
+      href: '/',
+      label: 'Home',
+    },
+    {
+      href: '/workbench',
+      label: 'Workbench',
+    },
+    {
+      href: '/kb-docbot',
+      label: 'KB DocBot',
+    },
+  ]
 
-  const navMarkup = links.map((link) => {
-    const isActive = currentPage === link.href;
-    const activeClass = isActive ? ' class="active"' : '';
+  const navLinks = links
+    .map(({ href, label }) => {
+      const normalizedHref =
+        href.replace(/\/$/, '') || '/'
 
-    return `<a href="${link.href}"${activeClass}>${link.label}</a>`;
-  }).join('');
+      const isActive =
+        currentPath === normalizedHref ||
+        (
+          normalizedHref !== '/' &&
+          currentPath.startsWith(normalizedHref)
+        )
 
-  container.innerHTML = `
-    <div class="navbar">
-      <h1>Karen McCrann</h1>
-      <nav aria-label="Primary">
-        ${navMarkup}
+      return `
+        <a
+          href="${href}"
+          class="nav-link${isActive ? ' active' : ''}"
+          ${isActive ? 'aria-current="page"' : ''}
+        >
+          ${label}
+        </a>
+      `
+    })
+    .join('')
+
+  header.innerHTML = `
+    <div class="nav-shell">
+      <a class="nav-brand" href="/" aria-label="Karen McCrann home">
+        <span class="brand-mark" aria-hidden="true">KM</span>
+
+        <span class="brand-copy">
+          <strong>Karen McCrann</strong>
+          <small>Support · Engineering · Documentation</small>
+        </span>
+      </a>
+
+      <nav class="nav-links" aria-label="Main navigation">
+        ${navLinks}
       </nav>
+
+      <a
+        class="nav-contact"
+        href="mailto:karen.mccrann@gmail.com"
+      >
+        Let’s talk
+        <span aria-hidden="true">↗</span>
+      </a>
     </div>
-  `;
+  `
 }
 
-window.renderNavbar = renderNavbar;
+window.renderNavbar = renderNavbar
