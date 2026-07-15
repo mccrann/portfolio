@@ -2,27 +2,373 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Karen McCrann</title>
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+
+  <meta
+    name="description"
+    content="Karen McCrann is a Product Support Engineer, Software Developer and Technical Investigator based in Ireland."
+  >
+
+  <title>Karen McCrann | Product Support Engineer</title>
+
   <link rel="stylesheet" href="styles.css">
   <link rel="stylesheet" href="navbar.css">
 </head>
+
 <body>
+  <a class="skip-link" href="#main-content">
+    Skip to content
+  </a>
+
   <header id="site-header"></header>
 
-  <main>
-    <section id="overview" class="content-block">
-      <h2>Karen McCrann</h2>
+  <main id="main-content">
+    <section class="hero content-block">
+      <div class="hero-copy">
+        <p class="eyebrow">
+          Support × Engineering × Documentation
+        </p>
 
-<p>I build thoughtful tools for support, engineering, documentation, and AI collaboration.</p>
+        <h1>
+          I investigate the messy technical problems
+          <span>and turn them into something useful.</span>
+        </h1>
 
-<p>My work sits between technical investigation, customer support, product thinking, software development, and clear writing.</p>
+        <p class="hero-intro">
+          I trace difficult issues through code, APIs, logs and data,
+          then turn what I find into fixes, tools and documentation
+          people can actually use.
+        </p>
+
+        <div class="hero-actions">
+          <a class="button button-primary" href="/kb-docbot">
+            Explore KB DocBot
+          </a>
+
+          <a
+            class="button button-secondary"
+            href="https://github.com/mccrann"
+            target="_blank"
+            rel="noreferrer"
+          >
+            View GitHub
+          </a>
+        </div>
+
+        <ul class="hero-facts" aria-label="Professional highlights">
+          <li>
+            <strong>10+ years</strong>
+            across support, leadership and software
+          </li>
+
+          <li>
+            <strong>Shopify C5</strong>
+            software developer
+          </li>
+
+          <li>
+            <strong>Based in Ireland</strong>
+            working remotely
+          </li>
+        </ul>
+      </div>
+
+      <div class="hero-visual" aria-label="DocBot workflow illustration">
+        <div class="system-window">
+          <div class="window-toolbar" aria-hidden="true">
+            <span></span>
+            <span></span>
+            <span></span>
+          </div>
+
+          <div class="robot-mark" aria-hidden="true">
+            🤖
+          </div>
+
+          <p class="system-label">KB DOCBOT</p>
+
+          <div class="flow-list">
+            <div class="flow-item">
+              <span class="flow-number">01</span>
+
+              <div>
+                <strong>Read the product change</strong>
+                <p>Pull request, files and code patches</p>
+              </div>
+            </div>
+
+            <div class="flow-item">
+              <span class="flow-number">02</span>
+
+              <div>
+                <strong>Check the help docs</strong>
+                <p>Find customer-facing gaps</p>
+              </div>
+            </div>
+
+            <div class="flow-item">
+              <span class="flow-number">03</span>
+
+              <div>
+                <strong>Open a documentation PR</strong>
+                <p>Ready for human review</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="system-status">
+            <span class="status-dot"></span>
+            Human review required
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="featured-work" class="section content-block">
+      <div class="section-heading">
+        <div>
+          <p class="eyebrow">Featured project</p>
+          <h2>KB DocBot</h2>
+        </div>
+
+        <p>
+          An AI-assisted workflow that connects product changes,
+          customer documentation and human review.
+        </p>
+      </div>
+
+      <article class="featured-project">
+        <div class="project-copy">
+          <p class="project-kicker">
+            AI agents · GitHub APIs · Documentation automation
+          </p>
+
+          <h3>
+            Keeping help documentation closer to the product
+          </h3>
+
+          <p>
+            Documentation drifts when product changes move faster than
+            the help content. I built DocBot to inspect merged product
+            pull requests, identify customer-facing changes and prepare
+            documentation updates for review.
+          </p>
+
+          <p>
+            It processes changes in chronological order, preserves
+            unrelated updates and lets the latest product behaviour take
+            precedence when pull requests overlap.
+          </p>
+
+          <div class="tag-list" aria-label="Technologies used">
+            <span>Next.js</span>
+            <span>React</span>
+            <span>TypeScript</span>
+            <span>OpenAI Agents SDK</span>
+            <span>GitHub REST API</span>
+            <span>GitHub App</span>
+          </div>
+
+          <div class="project-actions">
+            <a class="text-link" href="/kb-docbot">
+              Read the case study
+              <span aria-hidden="true">→</span>
+            </a>
+
+            <a
+              class="text-link"
+              href="https://github.com/mccrann/kb-docbot"
+              target="_blank"
+              rel="noreferrer"
+            >
+              View the repository
+              <span aria-hidden="true">↗</span>
+            </a>
+          </div>
+        </div>
+
+        <div class="project-panel" aria-hidden="true">
+          <div class="code-heading">
+            <span>documentation-decision.json</span>
+            <span class="code-success">create_pr</span>
+          </div>
+
+          <pre><code>{
+  "decision": "create_pr",
+  "evidence": [
+    "Payout timing changed",
+    "Existing FAQ is outdated"
+  ],
+  "humanReview": true
+}</code></pre>
+
+          <div class="pull-request-card">
+            <span class="pr-icon">✓</span>
+
+            <div>
+              <strong>Documentation PR ready</strong>
+              <p>Review the evidence and proposed changes</p>
+            </div>
+          </div>
+        </div>
+      </article>
+    </section>
+
+    <section id="approach" class="section content-block">
+      <div class="section-heading section-heading-narrow">
+        <div>
+          <p class="eyebrow">How I work</p>
+          <h2>Investigate. Build. Explain.</h2>
+        </div>
+
+        <p>
+          My best work usually happens where customer problems,
+          technical systems and clear communication meet.
+        </p>
+      </div>
+
+      <div class="strength-grid">
+        <article class="strength-card">
+          <span class="card-number">01</span>
+          <h3>Investigate</h3>
+
+          <p>
+            I reproduce difficult issues, trace data through systems
+            and work out what is actually happening rather than
+            stopping at the first plausible explanation.
+          </p>
+
+          <ul>
+            <li>Root-cause analysis</li>
+            <li>Logs, APIs and data</li>
+            <li>Technical troubleshooting</li>
+          </ul>
+        </article>
+
+        <article class="strength-card">
+          <span class="card-number">02</span>
+          <h3>Build</h3>
+
+          <p>
+            I turn what I learn into practical fixes, internal tools
+            and workflows that remove repetitive work without hiding
+            important decisions.
+          </p>
+
+          <ul>
+            <li>React and TypeScript</li>
+            <li>API integrations</li>
+            <li>AI-assisted workflows</li>
+          </ul>
+        </article>
+
+        <article class="strength-card">
+          <span class="card-number">03</span>
+          <h3>Explain</h3>
+
+          <p>
+            I translate technical behaviour into documentation,
+            investigation findings and guidance that other people can
+            understand and act on.
+          </p>
+
+          <ul>
+            <li>Technical documentation</li>
+            <li>Support enablement</li>
+            <li>Clear product thinking</li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <section id="experience" class="section content-block">
+      <div class="experience-card">
+        <div>
+          <p class="eyebrow">A slightly unusual route into engineering</p>
+
+          <h2>
+            From scientific research and technical support to building
+            the product itself.
+          </h2>
+        </div>
+
+        <div class="experience-copy">
+          <p>
+            I have worked across almost every layer of support at
+            Shopify: advising merchants, leading support teams,
+            investigating quality and knowledge gaps, and eventually
+            moving into software development.
+          </p>
+
+          <p>
+            That route taught me to look at software from several
+            directions at once: what the code does, how the system
+            behaves and what the person using it is actually
+            experiencing.
+          </p>
+
+          <a class="text-link" href="/workbench">
+            Explore my workbench
+            <span aria-hidden="true">→</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact" class="contact-section content-block">
+      <div>
+        <p class="eyebrow">Get in touch</p>
+
+        <h2>
+          Looking for someone who can move between customers,
+          documentation and code?
+        </h2>
+      </div>
+
+      <div class="contact-copy">
+        <p>
+          I am interested in remote product support engineering,
+          technical investigation, developer support and software roles
+          where careful thinking and clear communication matter.
+        </p>
+
+        <div class="contact-links">
+          <a
+            class="button button-primary"
+            href="mailto:karen.mccrann@gmail.com"
+          >
+            Email me
+          </a>
+
+          <a
+            class="button button-light"
+            href="https://www.linkedin.com/in/karen-mccrann-b85bb5241/"
+            target="_blank"
+            rel="noreferrer"
+          >
+            LinkedIn
+          </a>
+        </div>
+      </div>
     </section>
   </main>
 
+  <footer class="site-footer">
+    <p>Built by Karen McCrann in Ireland.</p>
+
+    <p>
+      Support brain. Engineering tools. Far too many questions.
+    </p>
+  </footer>
+
   <script src="./navbar.js"></script>
+
   <script>
-    window.renderNavbar('site-header');
+    window.renderNavbar('site-header')
   </script>
 </body>
 </html>
