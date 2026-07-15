@@ -3,40 +3,418 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
   <title>KB DocBot</title>
+
   <link rel="stylesheet" href="styles.css">
   <link rel="stylesheet" href="navbar.css">
 </head>
+
 <body>
   <header id="site-header"></header>
 
   <main>
     <section id="overview" class="content-block">
-      <h2>KB DocBot</h2>
+      <p class="eyebrow">AI-assisted documentation workflow</p>
 
+      <h1>KB DocBot</h1>
 
-<p>AI-assisted documentation updates from code changes.</p>
+      <p class="intro">
+        KB DocBot analyses recently merged product pull requests, checks the
+        customer help documentation and creates a documentation pull request
+        when something needs to change.
+      </p>
 
-<p><strong>What it does:</strong></p>
-<ul>
-  <li>Reads recent GitHub commits and pull requests</li>
-  <li>Checks the documentation repo for affected pages</li>
-  <li>Drafts suggested Markdown updates</li>
-  <li>Opens a pull request for human review</li>
-  <li>Posts a Slack summary when review is ready</li>
-</ul>
+      <p>
+        I built it to explore a problem I had already seen in real product
+        teams: the product changes, the code ships and the documentation quietly
+        falls behind.
+      </p>
 
-<p><strong>Why I built it:</strong></p>
-<p>Documentation drifts when product changes faster than help content. This tool reduces that gap without letting AI publish unchecked.</p>
+      <p>
+        DocBot is designed to reduce that gap without allowing AI to publish
+        customer-facing information unchecked.
+      </p>
+    </section>
 
-<p><strong>Human-in-the-loop by design:</strong></p>
-<p>AI can detect, draft, and explain. A person still owns accuracy, tone, and release timing.</p>
+    <section id="problem" class="content-block">
+      <h2>The problem</h2>
+
+      <p>
+        Documentation updates are easy to miss because the information needed
+        to identify them is spread across different places.
+      </p>
+
+      <p>
+        An engineer understands the code change. A technical writer understands
+        the help content. Support teams understand where customers are becoming
+        confused. But the connection between those things is often manual.
+      </p>
+
+      <p>
+        That means help documentation can remain technically correct while
+        still describing behaviour that no longer exists.
+      </p>
+
+      <p>
+        I wanted to see whether an AI agent could help make that connection:
+        not by publishing documentation itself, but by finding likely gaps,
+        explaining its reasoning and preparing a useful first draft for a person
+        to review.
+      </p>
+    </section>
+
+    <section id="solution" class="content-block">
+      <h2>What I built</h2>
+
+      <p>KB DocBot connects three repositories and workflows:</p>
+
+      <ul>
+        <li>
+          A product repository containing recently merged code changes
+        </li>
+
+        <li>
+          A documentation repository containing the customer help content
+        </li>
+
+        <li>
+          A Next.js application that coordinates the GitHub and AI workflows
+        </li>
+      </ul>
+
+      <p>From the application, DocBot can:</p>
+
+      <ul>
+        <li>Retrieve recently merged and unprocessed product pull requests</li>
+        <li>Read the files and code patches changed by each pull request</li>
+        <li>Fetch the current Markdown help documentation</li>
+        <li>Decide whether the change affects customers</li>
+        <li>Identify the documentation pages that need to change</li>
+        <li>Generate updated content and explain the evidence behind it</li>
+        <li>Create a branch, commit and documentation pull request</li>
+        <li>Label processed product pull requests to avoid duplicate work</li>
+      </ul>
+    </section>
+
+    <section id="workflow" class="content-block">
+      <h2>How it works</h2>
+
+      <ol>
+        <li>
+          <strong>Fetch the product changes.</strong>
+          DocBot retrieves merged pull requests from GitHub, including their
+          titles, descriptions, changed files and code patches.
+        </li>
+
+        <li>
+          <strong>Process each pull request separately.</strong>
+          Each product pull request is analysed on its own so the agent can
+          reason about one change at a time rather than trying to interpret a
+          large collection of unrelated changes.
+        </li>
+
+        <li>
+          <strong>Read the current help content.</strong>
+          The agent checks the documentation repository for pages that describe
+          the affected behaviour.
+        </li>
+
+        <li>
+          <strong>Make a documentation decision.</strong>
+          The agent either returns a no-change decision or proposes specific
+          Markdown updates supported by evidence from the product change and
+          existing documentation.
+        </li>
+
+        <li>
+          <strong>Build one coherent documentation update.</strong>
+          Product pull requests are processed in chronological merge order.
+          Each new decision sees the documentation changes produced by earlier
+          pull requests.
+        </li>
+
+        <li>
+          <strong>Create a pull request for review.</strong>
+          DocBot creates the GitHub branch, commit and documentation pull
+          request. A person still decides whether it should be edited, approved
+          or rejected.
+        </li>
+      </ol>
+    </section>
+
+    <section id="aggregation" class="content-block">
+      <h2>Handling overlapping product changes</h2>
+
+      <p>
+        One of the more interesting problems was working out what should happen
+        when several product pull requests affect the same area of the product.
+      </p>
+
+      <p>
+        Simply generating a complete documentation page for every pull request
+        and trying to combine the results afterwards is unreliable. Two agents
+        may return different versions of the same file even when their changes
+        are not actually in conflict.
+      </p>
+
+      <p>
+        Instead, DocBot processes the product pull requests from oldest to
+        newest and maintains a working copy of the documentation as it goes.
+      </p>
+
+      <ul>
+        <li>
+          If two product pull requests change different behaviour, both
+          documentation updates are preserved.
+        </li>
+
+        <li>
+          If a later product pull request changes the same behaviour again, the
+          newest merged change takes precedence.
+        </li>
+
+        <li>
+          Unrelated updates already made to the same documentation page remain
+          intact.
+        </li>
+      </ul>
+
+      <p>
+        This creates one final version of the help content that reflects the
+        actual order in which the product changed.
+      </p>
+    </section>
+
+    <section id="human-review" class="content-block">
+      <h2>Human review is part of the architecture</h2>
+
+      <p>
+        I did not want DocBot to publish directly to the help centre.
+      </p>
+
+      <p>
+        AI can be useful for finding patterns, comparing code with existing
+        content and producing a first draft. It should not silently decide what
+        customers are told.
+      </p>
+
+      <p>
+        Every proposed change is therefore created as a normal GitHub pull
+        request. The reviewer can inspect the evidence, compare the changes,
+        edit the wording and decide whether the update is ready to merge.
+      </p>
+
+      <p>
+        This keeps accuracy, tone and release timing under human control while
+        still removing much of the repetitive investigation and drafting work.
+      </p>
+    </section>
+
+    <section id="feedback" class="content-block">
+      <h2>Building a feedback loop</h2>
+
+      <p>
+        Each documentation pull request includes a simple feedback prompt asking
+        the reviewer to react with:
+      </p>
+
+      <ul>
+        <li>
+          👍 <strong>Good robot</strong> when the proposal is accurate and
+          useful
+        </li>
+
+        <li>
+          👎 <strong>Bad robot</strong> when it is incorrect, incomplete or
+          unnecessary
+        </li>
+      </ul>
+
+      <p>
+        Reviewers can also leave comments or edit the proposed documentation
+        before merging it.
+      </p>
+
+      <p>
+        For the prototype, GitHub acts as a lightweight feedback and audit
+        store. It already contains:
+      </p>
+
+      <ul>
+        <li>The original product change</li>
+        <li>DocBot’s proposed documentation</li>
+        <li>The evidence used to make the decision</li>
+        <li>Reviewer reactions and comments</li>
+        <li>Any human edits</li>
+        <li>The final merged or rejected result</li>
+      </ul>
+
+      <p>
+        That means I can add a meaningful feedback loop without introducing a
+        database before the project actually needs one.
+      </p>
+    </section>
+
+    <section id="github-memory" class="content-block">
+      <h2>Using GitHub as lightweight memory</h2>
+
+      <p>
+        DocBot also uses GitHub labels as a simple form of workflow memory.
+      </p>
+
+      <p>
+        Once a product pull request has been analysed successfully, it can be
+        labelled as processed. Future runs ignore those pull requests, which
+        prevents duplicate documentation proposals without requiring a separate
+        persistence layer.
+      </p>
+
+      <p>
+        This approach is deliberately small and transparent. The state of the
+        workflow can be inspected directly in GitHub rather than hidden inside
+        an application database.
+      </p>
+    </section>
+
+    <section id="production" class="content-block">
+      <h2>Thinking beyond the prototype</h2>
+
+      <p>
+        For the prototype, GitHub is doing a lot of the heavy lifting. It stores
+        the product pull requests, the documentation pull requests DocBot
+        creates, reviewer comments, reactions, edits and the final merged
+        content.
+      </p>
+
+      <p>
+        That gives me a lightweight audit trail without adding a database before
+        I actually need one.
+      </p>
+
+      <p>
+        I do not think GitHub alone would be the best long-term solution for a
+        company using this at scale, though.
+      </p>
+
+      <p>
+        In a production system, I would keep GitHub as the source of truth
+        because it contains the actual evidence: the original code change,
+        DocBot’s proposal, the reviewer’s feedback and the final documentation.
+      </p>
+
+      <p>
+        I would then use GitHub webhooks to send structured feedback into a
+        database.
+      </p>
+
+      <p>That would make it much easier to:</p>
+
+      <ul>
+        <li>Retrieve relevant past decisions before analysing a new PR</li>
+        <li>Separate data between organisations and repositories</li>
+        <li>Track acceptance, rejection and edit rates</li>
+        <li>Identify the kinds of changes DocBot gets wrong most often</li>
+        <li>Search feedback by product area, file or documentation topic</li>
+        <li>Build organisation-specific guidance over time</li>
+      </ul>
+
+      <p>
+        The database would not replace GitHub. It would act as a faster,
+        searchable operational layer on top of it.
+      </p>
+
+      <pre class="flow-diagram"><code>Product PR merged
+        ↓
+DocBot proposes a documentation update
+        ↓
+Reviewer approves, edits or rejects it in GitHub
+        ↓
+GitHub webhook sends the feedback to the application
+        ↓
+Feedback is stored and analysed
+        ↓
+Relevant examples and approved guidance are used in future runs</code></pre>
+    </section>
+
+    <section id="learning" class="content-block">
+      <h2>Controlled learning, not automatic self-editing</h2>
+
+      <p>
+        A future version could use an evaluation agent to analyse previous
+        documentation pull requests and identify recurring feedback.
+      </p>
+
+      <p>
+        For example, it might discover that internal constant changes rarely
+        need documentation, or that changes to payout timing usually affect a
+        particular help page.
+      </p>
+
+      <p>
+        I would not allow the agent to rewrite its own instructions
+        automatically.
+      </p>
+
+      <p>
+        Instead, the evaluation agent could propose updates to a
+        version-controlled guidance file. A person would review and approve
+        those changes before they affected future decisions.
+      </p>
+
+      <p>
+        This would allow the system to improve over time without removing human
+        oversight or making its behaviour difficult to understand and audit.
+      </p>
+    </section>
+
+    <section id="technology" class="content-block">
+      <h2>Technology and skills</h2>
+
+      <ul>
+        <li>Next.js and React</li>
+        <li>TypeScript</li>
+        <li>Node.js server routes</li>
+        <li>OpenAI Agents SDK</li>
+        <li>Structured agent outputs</li>
+        <li>REST and GraphQL APIs</li>
+        <li>GitHub App authentication</li>
+        <li>GitHub pull requests, commits, branches and labels</li>
+        <li>Markdown content generation</li>
+        <li>Sequential and asynchronous workflow design</li>
+        <li>Error handling and API debugging</li>
+        <li>Human-in-the-loop AI design</li>
+        <li>Feedback and evaluation architecture</li>
+      </ul>
+    </section>
+
+    <section id="reflection" class="content-block">
+      <h2>What this project demonstrates</h2>
+
+      <p>
+        KB DocBot is not just a prompt connected to GitHub.
+      </p>
+
+      <p>
+        Building it required me to think about authentication, API limits,
+        structured data, repository state, conflicting changes, auditability,
+        failure handling and where human judgement belongs in an AI-assisted
+        workflow.
+      </p>
+
+      <p>
+        It brings together the parts of technical work I enjoy most:
+        investigating how systems behave, understanding the customer impact,
+        designing practical workflows and turning complex changes into clear
+        information people can trust.
+      </p>
     </section>
   </main>
 
   <script src="./navbar.js"></script>
+
   <script>
-    window.renderNavbar('site-header');
+    window.renderNavbar('site-header')
   </script>
 </body>
 </html>
