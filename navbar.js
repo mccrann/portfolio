@@ -21,6 +21,10 @@ function renderNavbar(headerId) {
       href: '/kb-docbot',
       label: 'KB DocBot',
     },
+    {
+      href: '/tips',
+      label: 'Tips',
+    },
   ]
 
   const navLinks = links
