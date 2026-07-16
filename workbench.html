@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -215,6 +214,137 @@
           </div>
         </div>
       </article>
+    </section>
+
+    <section class="section content-block">
+      <div class="section-heading">
+        <div>
+          <p class="eyebrow">Designed and built from scratch</p>
+          <h2>This portfolio website</h2>
+        </div>
+
+        <p>
+          A lightweight, responsive static site built with plain HTML, a shared
+          CSS design system and a tiny amount of JavaScript.
+        </p>
+      </div>
+
+      <article class="featured-project">
+        <div class="project-copy">
+          <p class="project-kicker">
+            HTML · CSS · JavaScript · Responsive design
+          </p>
+
+          <h3>
+            Simple on purpose, not simple by accident.
+          </h3>
+
+          <p>
+            I designed and built this site to present my work clearly without
+            hiding it inside a large framework or complicated build system.
+            Each page is ordinary semantic HTML, the visual language lives in
+            one shared stylesheet and JavaScript is used only where it adds
+            something useful.
+          </p>
+
+          <p>
+            The navigation is the main shared JavaScript component. Everything
+            else is handled by the browser using HTML and CSS: layout, spacing,
+            typography, responsive behaviour, project cards and visual
+            hierarchy.
+          </p>
+
+          <p>
+            I chose this approach because the site does not need application
+            state, a database or client-side rendering. A static portfolio
+            should load quickly, remain easy to understand and be simple to
+            change without introducing unnecessary dependencies.
+          </p>
+
+          <div class="tag-list" aria-label="Portfolio website features">
+            <span>Semantic HTML</span>
+            <span>Shared CSS system</span>
+            <span>Tiny JavaScript</span>
+            <span>Responsive layouts</span>
+            <span>Accessible navigation</span>
+            <span>Static deployment</span>
+          </div>
+
+          <div class="project-actions">
+            <a
+              class="text-link"
+              href="https://github.com/mccrann/portfolio"
+              target="_blank"
+              rel="noreferrer"
+            >
+              View the website source
+              <span aria-hidden="true">↗</span>
+            </a>
+          </div>
+        </div>
+
+        <div class="project-panel" aria-hidden="true">
+          <div class="code-heading">
+            <span>portfolio/</span>
+            <span class="code-success">deliberately small</span>
+          </div>
+
+          <pre><code>index.html
+workbench.html
+kb-docbot.html
+tips.html
+
+styles.css
+navbar.css
+navbar.js
+
+No framework
+No build step
+No component library</code></pre>
+
+          <div class="pull-request-card">
+            <span class="pr-icon">✓</span>
+
+            <div>
+              <strong>The browser already does a lot</strong>
+              <p>Use the platform before adding another abstraction</p>
+            </div>
+          </div>
+        </div>
+      </article>
+    </section>
+
+    <section class="section content-block">
+      <div class="experience-card">
+        <div>
+          <p class="eyebrow">Why build it this way?</p>
+
+          <h2>
+            The architecture should match the size of the problem.
+          </h2>
+        </div>
+
+        <div class="experience-copy">
+          <p>
+            A portfolio is mostly structured content. It needs strong visual
+            design, clear navigation and responsive layouts, but it does not
+            need the machinery of a full web application.
+          </p>
+
+          <p>
+            Keeping the implementation small makes the site easier to debug,
+            faster to load and much harder to break. It also means I can open
+            any page and immediately see how it works.
+          </p>
+
+          <p>
+            The simplicity is also part of the design. The pages share the same
+            colours, typography, spacing, cards and layout patterns, so new
+            content can be added by reusing an established system rather than
+            inventing each page again.
+          </p>
+        </div>
+      </div>
     </section>
 
     <section class="section content-block">
