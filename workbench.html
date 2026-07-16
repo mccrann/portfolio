@@ -1,34 +1,362 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Workbench</title>
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+
+  <meta
+    name="description"
+    content="A collection of software, technical investigation, documentation and AI workflow projects by Karen McCrann."
+  >
+
+  <title>Workbench | Karen McCrann</title>
+
   <link rel="stylesheet" href="styles.css">
   <link rel="stylesheet" href="navbar.css">
 </head>
-<body>
-  <header id="site-header"></header>
-  <aside class="sidebar">
-    <h2>Navigation</h2>
-    <ul>
-      <li><a href="#overview">Overview</a></li>
-      <li><a href="#skills">Skills</a></li>
-      <li><a href="#work">Work</a></li>
-      <li><a href="#blog">Blog</a></li>
-    </ul>
-  </aside>
 
-  <main>
-    <section id="overview" class="content-block">
-      <h2>Workbench</h2>
-      <p>This will be the workbench page</p>
+<body>
+  <a class="skip-link" href="#main-content">
+    Skip to content
+  </a>
+
+  <header id="site-header"></header>
+
+  <main id="main-content">
+    <section class="hero content-block">
+      <div class="hero-copy">
+        <p class="eyebrow">
+          Projects · Experiments · Technical investigations
+        </p>
+
+        <h1>
+          Welcome to my
+          <span>workbench.</span>
+        </h1>
+
+        <p class="hero-intro">
+          This is where I collect the things I build while investigating
+          awkward technical problems, experimenting with new tools and looking
+          for better ways to connect systems, people and information.
+        </p>
+
+        <div class="hero-actions">
+          <a class="button button-primary" href="#projects">
+            Explore the projects
+          </a>
+
+          <a
+            class="button button-secondary"
+            href="https://github.com/mccrann"
+            target="_blank"
+            rel="noreferrer"
+          >
+            View GitHub
+          </a>
+        </div>
+
+        <ul class="hero-facts" aria-label="Workbench themes">
+          <li>
+            <strong>Investigate</strong>
+            Follow the evidence until the system makes sense
+          </li>
+
+          <li>
+            <strong>Build</strong>
+            Turn the findings into something practical
+          </li>
+
+          <li>
+            <strong>Explain</strong>
+            Make the result useful to people who were not in the room
+          </li>
+        </ul>
+      </div>
+
+      <div class="hero-visual" aria-label="Workbench project preview">
+        <div class="system-window">
+          <div class="window-toolbar" aria-hidden="true">
+            <span></span>
+            <span></span>
+            <span></span>
+          </div>
+
+          <div class="robot-mark" aria-hidden="true">
+            🛠️
+          </div>
+
+          <p class="system-label">CURRENTLY ON THE BENCH</p>
+
+          <div class="flow-list">
+            <div class="flow-item">
+              <span class="flow-number">01</span>
+
+              <div>
+                <strong>KB DocBot</strong>
+                <p>AI-assisted documentation workflow</p>
+              </div>
+            </div>
+
+            <div class="flow-item">
+              <span class="flow-number">02</span>
+
+              <div>
+                <strong>Technical investigation notes</strong>
+                <p>Turning difficult bugs into clear explanations</p>
+              </div>
+            </div>
+
+            <div class="flow-item">
+              <span class="flow-number">03</span>
+
+              <div>
+                <strong>Next experiment</strong>
+                <p>Placeholder for whatever I become obsessed with next</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="system-status">
+            <span class="status-dot"></span>
+            Work in progress is welcome here
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="projects" class="section content-block">
+      <div class="section-heading">
+        <div>
+          <p class="eyebrow">Featured project</p>
+          <h2>KB DocBot</h2>
+        </div>
+
+        <p>
+          A working application that analyses merged product pull requests,
+          checks the customer help documentation and prepares a documentation
+          pull request when something needs to change.
+        </p>
+      </div>
+
+      <article class="featured-project">
+        <div class="project-copy">
+          <p class="project-kicker">
+            AI agents · GitHub APIs · Human review
+          </p>
+
+          <h3>
+            Helping documentation keep up with the product.
+          </h3>
+
+          <p>
+            DocBot retrieves product changes, reads the relevant help content,
+            explains whether an update is needed and creates a reviewable
+            documentation pull request.
+          </p>
+
+          <p>
+            The project explores agent orchestration, repository state,
+            overlapping product changes, structured output, feedback and the
+            point at which human judgement should remain firmly in charge.
+          </p>
+
+          <div class="tag-list" aria-label="KB DocBot technologies">
+            <span>Next.js</span>
+            <span>React</span>
+            <span>TypeScript</span>
+            <span>OpenAI Agents SDK</span>
+            <span>GitHub REST API</span>
+            <span>GitHub App</span>
+          </div>
+
+          <div class="project-actions">
+            <a class="text-link" href="/kb-docbot">
+              Read the case study
+              <span aria-hidden="true">→</span>
+            </a>
+
+            <a
+              class="text-link"
+              href="https://github.com/mccrann/kb-docbot"
+              target="_blank"
+              rel="noreferrer"
+            >
+              View the repository
+              <span aria-hidden="true">↗</span>
+            </a>
+          </div>
+        </div>
+
+        <div class="project-panel" aria-hidden="true">
+          <div class="code-heading">
+            <span>docbot-run.json</span>
+            <span class="code-success">complete</span>
+          </div>
+
+          <pre><code>{
+  "productPRsAnalysed": 4,
+  "documentationDecision": "create_pr",
+  "updatedPages": 2,
+  "humanReview": true
+}</code></pre>
+
+          <div class="pull-request-card">
+            <span class="pr-icon">✓</span>
+
+            <div>
+              <strong>Documentation PR ready</strong>
+              <p>Evidence, changes and reviewer feedback included</p>
+            </div>
+          </div>
+        </div>
+      </article>
+    </section>
+
+    <section class="section content-block">
+      <div class="section-heading section-heading-narrow">
+        <div>
+          <p class="eyebrow">Also on the bench</p>
+          <h2>Projects taking shape.</h2>
+        </div>
+
+        <p>
+          These are placeholder project areas for now. They can become full
+          case studies as the work develops.
+        </p>
+      </div>
+
+      <div class="strength-grid">
+        <article class="strength-card">
+          <span class="card-number">COMING SOON</span>
+
+          <h3>Support Signal Explorer</h3>
+
+          <p>
+            A placeholder project exploring how repeated support problems can
+            be grouped, investigated and turned into useful product signals.
+          </p>
+
+          <ul>
+            <li>Issue clustering</li>
+            <li>Customer-impact analysis</li>
+            <li>Evidence-based prioritisation</li>
+          </ul>
+        </article>
+
+        <article class="strength-card">
+          <span class="card-number">COMING SOON</span>
+
+          <h3>Integration Debugger</h3>
+
+          <p>
+            A placeholder tool for tracing requests across APIs, webhooks and
+            external systems without losing the story of what happened.
+          </p>
+
+          <ul>
+            <li>Request timelines</li>
+            <li>API and webhook inspection</li>
+            <li>Human-readable findings</li>
+          </ul>
+        </article>
+
+        <article class="strength-card">
+          <span class="card-number">ONGOING</span>
+
+          <h3>Writing and Research</h3>
+
+          <p>
+            A home for technical writing, investigation notes, scientific
+            research and the occasional project that refuses to fit neatly
+            into one category.
+          </p>
+
+          <ul>
+            <li>Technical explanations</li>
+            <li>Research and evidence</li>
+            <li>Long-form writing</li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <section class="section content-block">
+      <div class="experience-card">
+        <div>
+          <p class="eyebrow">What belongs here?</p>
+
+          <h2>
+            Anything that starts with “I need to understand how this works.”
+          </h2>
+        </div>
+
+        <div class="experience-copy">
+          <p>
+            Some projects begin with a product idea. Mine often begin with a
+            confusing system, a recurring problem or a gap between what the
+            software does and what people think it does.
+          </p>
+
+          <p>
+            The workbench is where I can show the investigation as well as the
+            finished result: the questions, trade-offs, failed approaches and
+            design decisions that shaped the solution.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="contact-section content-block">
+      <div>
+        <p class="eyebrow">Have an awkward problem?</p>
+
+        <h2>
+          Those are usually the interesting ones.
+        </h2>
+      </div>
+
+      <div class="contact-copy">
+        <p>
+          I am interested in product support engineering, technical
+          investigation, developer support and software roles where careful
+          thinking and clear communication matter.
+        </p>
+
+        <div class="contact-links">
+          <a
+            class="button button-primary"
+            href="mailto:karen.mccrann@gmail.com"
+          >
+            Email me
+          </a>
+
+          <a
+            class="button button-light"
+            href="https://www.linkedin.com/in/karen-mccrann-b85bb5241/"
+            target="_blank"
+            rel="noreferrer"
+          >
+            LinkedIn
+          </a>
+        </div>
+      </div>
     </section>
   </main>
 
+  <footer class="site-footer">
+    <p>Built by Karen McCrann in Ireland.</p>
+    <p>Support brain. Engineering tools. Far too many questions.</p>
+  </footer>
+
   <script src="./navbar.js"></script>
+
   <script>
-    window.renderNavbar('site-header');
+    window.renderNavbar('site-header')
   </script>
 </body>
 </html>
