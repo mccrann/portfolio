@@ -141,7 +141,25 @@ h1, h2, h3, h4 { margin-top: 0; color: var(--ink); font-weight: 850; text-wrap: 
 .workflow-card h3 { margin: 2rem 0 0.8rem; font-size: 2rem; }
 .workflow-card p { color: var(--ink-soft); font-size: 0.94rem; }
 .workflow-detail { margin-top: auto; color: var(--ink); font-size: 0.78rem; font-weight: 850; }
-.architecture-strip, .production-flow { display: grid; grid-template-columns: 1fr auto 1fr auto 1fr auto 1fr; gap: 0.7rem; align-items: center; margin-top: 1.8rem; padding: 1.3rem; border-radius: var(--radius-medium); background: var(--navy); color: var(--white); }
+.architecture-strip,
+.production-flow {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr auto 1fr auto 1fr;
+  gap: 0.7rem;
+  align-items: center;
+  padding: 1.3rem;
+  border-radius: var(--radius-medium);
+  background: var(--navy);
+  color: var(--white);
+}
+
+.architecture-strip {
+  margin-top: 1.25rem;
+}
+
+.production-flow {
+  margin-top: 2rem;
+}
 .architecture-node, .production-step { padding: 1rem; border-radius: 13px; background: rgba(255, 255, 255, 0.055); }
 .architecture-node-human { background: var(--coral); color: var(--navy); }
 .architecture-node span, .production-step span { display: block; color: var(--mint); font-size: 0.7rem; font-weight: 900; text-transform: uppercase; }
@@ -196,7 +214,14 @@ h1, h2, h3, h4 { margin-top: 0; color: var(--ink); font-weight: 850; text-wrap: 
   .hero-actions, .project-actions, .contact-links { align-items: stretch; flex-direction: column; }
   .button { width: 100%; }
   .project-copy, .project-panel, .experience-card, .contact-section, .challenge-panel, .review-card, .memory-panel, .reflection-panel { padding: 1.5rem; }
-  .section, .case-section, .project-next { padding-block: 3.3rem; }
+.section,
+.project-next {
+  padding-block: 3.3rem;
+}
+
+.case-section {
+  margin-block: 3.3rem;
+}
   .demo-robot-link { width: 100%; margin: -1.2rem auto 0; }
   .case-jump-nav { flex-wrap: nowrap; overflow-x: auto; }
   .project-next { align-items: flex-start; flex-direction: column; }
