@@ -1,0 +1,638 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+
+  <meta
+    name="description"
+    content="Engineering notes, architecture lessons and practical ideas from Karen McCrann's software workbench."
+  >
+
+  <title>Notes from the Workbench | Karen McCrann</title>
+
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="navbar.css">
+</head>
+
+<body>
+  <a class="skip-link" href="#main-content">
+    Skip to content
+  </a>
+
+  <header id="site-header"></header>
+
+  <main id="main-content">
+    <section class="hero content-block">
+      <div class="hero-copy">
+        <p class="eyebrow">
+          Engineering notes · Architecture · Things learned the hard way
+        </p>
+
+        <h1>
+          Notes from the
+          <span>workbench.</span>
+        </h1>
+
+        <p class="hero-intro">
+          These are the useful bits that sit between the finished projects:
+          architecture decisions, debugging lessons, practical shortcuts and
+          thoughts about what software is actually doing.
+        </p>
+
+        <p>
+          They are not intended to be polished tutorials. They are the ideas I
+          want to remember because they changed how I build or think.
+        </p>
+
+        <div class="hero-actions">
+          <a class="button button-primary" href="#agent-and-app">
+            Start with the big idea
+          </a>
+
+          <a class="button button-secondary" href="/workbench">
+            Visit the workbench
+          </a>
+        </div>
+
+        <ul class="hero-facts" aria-label="Themes on this page">
+          <li>
+            <strong>Architecture</strong>
+            Give judgement and execution to the right parts of the system
+          </li>
+
+          <li>
+            <strong>Debugging</strong>
+            Keep the failures as evidence instead of hiding them
+          </li>
+
+          <li>
+            <strong>Practicality</strong>
+            Small improvements matter when they remove repeated friction
+          </li>
+        </ul>
+      </div>
+
+      <div class="hero-visual" aria-label="Workbench notes preview">
+        <div class="system-window">
+          <div class="window-toolbar" aria-hidden="true">
+            <span></span>
+            <span></span>
+            <span></span>
+          </div>
+
+          <div class="robot-mark" aria-hidden="true">
+            💡
+          </div>
+
+          <p class="system-label">CURRENT NOTES</p>
+
+          <div class="flow-list">
+            <div class="flow-item">
+              <span class="flow-number">01</span>
+
+              <div>
+                <strong>Agent judgement vs application execution</strong>
+                <p>Keep reasoning high-level and operations deterministic</p>
+              </div>
+            </div>
+
+            <div class="flow-item">
+              <span class="flow-number">02</span>
+
+              <div>
+                <strong>Software as layers of behaviour</strong>
+                <p>Functions, rules, patterns and now reasoning</p>
+              </div>
+            </div>
+
+            <div class="flow-item">
+              <span class="flow-number">03</span>
+
+              <div>
+                <strong>Things that broke</strong>
+                <p>Authentication, private keys and server-only code</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="system-status">
+            <span class="status-dot"></span>
+            Understanding first, agreement second
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="agent-and-app" class="section content-block">
+      <div class="section-heading">
+        <div>
+          <p class="eyebrow">The clearest architecture rule</p>
+
+          <h2>
+            The agent should think in business tasks.
+          </h2>
+        </div>
+
+        <p>
+          The application should think in implementation details.
+        </p>
+      </div>
+
+      <article class="featured-project">
+        <div class="project-copy">
+          <p class="project-kicker">
+            Judgement on one side · Deterministic work on the other
+          </p>
+
+          <h3>
+            The agent decides what should happen. The application makes it
+            happen safely.
+          </h3>
+
+          <p>
+            DocBot is given a small number of high-level business tools rather
+            than a bag of low-level GitHub operations. That keeps the agent
+            focused on the real question: does the customer documentation need
+            to change, and why?
+          </p>
+
+          <p>
+            The application retains responsibility for predictable operations:
+            authentication, validation, retries, fetching repository data,
+            creating branches, committing files and opening pull requests.
+          </p>
+
+          <p>
+            It is almost the opposite of the usual AI metaphor. The agent acts
+            like the human doing the higher-level thinking, while the
+            application quietly handles the repetitive work.
+          </p>
+
+          <div class="tag-list" aria-label="Architecture principles">
+            <span>Clear responsibilities</span>
+            <span>Small tool surface</span>
+            <span>Structured decisions</span>
+            <span>Deterministic execution</span>
+            <span>Human review</span>
+          </div>
+        </div>
+
+        <div class="project-panel">
+          <div class="code-heading">
+            <span>responsibilities.txt</span>
+            <span class="code-success">separated</span>
+          </div>
+
+          <pre><code>AGENT
+- Understand the product change
+- Judge customer impact
+- Decide what documentation changes
+- Explain the evidence
+
+APPLICATION
+- Authenticate with GitHub
+- Fetch and validate data
+- Create branches and commits
+- Open the pull request
+- Retry predictable failures</code></pre>
+
+          <div class="pull-request-card">
+            <span class="pr-icon">✓</span>
+
+            <div>
+              <strong>Judgement is not execution</strong>
+              <p>Keeping them separate makes the workflow easier to trust</p>
+            </div>
+          </div>
+        </div>
+      </article>
+    </section>
+
+    <section class="section content-block">
+      <div class="experience-card">
+        <div>
+          <p class="eyebrow">A deeper thought</p>
+
+          <h2>
+            Software increasingly looks like a reconstruction of ourselves.
+          </h2>
+        </div>
+
+        <div class="experience-copy">
+          <p>
+            At the bottom, software has basic functions doing mundane,
+            essential work: schedulers, data retrieval, recurring jobs and
+            background processes.
+          </p>
+
+          <p>
+            Above that are simple decisions: if this happens, do that. Then
+            comes comparison and pattern matching: do these dates overlap, does
+            this event resemble an earlier one, is something out of place?
+          </p>
+
+          <p>
+            AI adds another layer: reasoning. To me, the stack maps surprisingly
+            well onto human experience—heartbeat and breathing, bodily signals
+            such as thirst and tiredness, subconscious pattern recognition, and
+            finally the part of us that can think about what all of it means.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section content-block">
+      <div class="section-heading section-heading-narrow">
+        <div>
+          <p class="eyebrow">How that idea appears in DocBot</p>
+
+          <h2>
+            Three different kinds of responsibility.
+          </h2>
+        </div>
+
+        <p>
+          The system works because the agent, the application and the reviewer
+          are not pretending to be interchangeable.
+        </p>
+      </div>
+
+      <div class="strength-grid">
+        <article class="strength-card">
+          <span class="card-number">01 · AGENT</span>
+
+          <h3>Reason</h3>
+
+          <p>
+            Interpret the product change, compare it with the help content and
+            decide whether customers need different information.
+          </p>
+
+          <ul>
+            <li>Customer impact</li>
+            <li>Documentation judgement</li>
+            <li>Evidence and rationale</li>
+          </ul>
+        </article>
+
+        <article class="strength-card">
+          <span class="card-number">02 · APPLICATION</span>
+
+          <h3>Execute</h3>
+
+          <p>
+            Perform the repository work in a predictable way and reject output
+            that does not match the expected structure.
+          </p>
+
+          <ul>
+            <li>GitHub authentication</li>
+            <li>Branches, files and commits</li>
+            <li>Validation and retries</li>
+          </ul>
+        </article>
+
+        <article class="strength-card">
+          <span class="card-number">03 · HUMAN</span>
+
+          <h3>Own the outcome</h3>
+
+          <p>
+            Check the evidence, edit the wording and decide whether the
+            customer-facing change is accurate and ready to publish.
+          </p>
+
+          <ul>
+            <li>Accuracy</li>
+            <li>Tone and context</li>
+            <li>Final approval</li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <section class="section content-block">
+      <div class="section-heading">
+        <div>
+          <p class="eyebrow">The DocBot flow</p>
+
+          <h2>
+            A reasoning layer inside a normal application.
+          </h2>
+        </div>
+
+        <p>
+          The agent is one part of the system, not the whole system.
+        </p>
+      </div>
+
+      <article class="featured-project">
+        <div class="project-copy">
+          <p class="project-kicker">
+            Next.js · GitHub capabilities · Structured output
+          </p>
+
+          <h3>
+            The application surrounds the agent with controlled capabilities.
+          </h3>
+
+          <p>
+            A user starts the workflow through the Next.js frontend. The
+            application retrieves repository data and presents a small set of
+            useful tools to the DocBot agent.
+          </p>
+
+          <p>
+            The agent returns a structured documentation decision. The
+            application validates that decision, creates the documentation
+            pull request and relies on Netlify previews and GitHub review for
+            the final human check.
+          </p>
+
+          <div class="project-actions">
+            <a class="text-link" href="/kb-docbot">
+              Read the full DocBot case study
+              <span aria-hidden="true">→</span>
+            </a>
+          </div>
+        </div>
+
+        <div class="project-panel">
+          <div class="code-heading">
+            <span>system-flow.txt</span>
+            <span class="code-success">human reviewed</span>
+          </div>
+
+          <pre><code>User
+  ↓
+Next.js frontend
+  ↓
+Application layer
+  ↓
+GitHub capabilities
+  ↑
+Agent tools
+  ↑
+KB DocBot agent
+  ↓
+Structured decision
+  ↓
+GitHub documentation PR
+  ↓
+Netlify preview
+  ↓
+Human review</code></pre>
+        </div>
+      </article>
+    </section>
+
+    <section class="section content-block">
+      <div class="experience-card">
+        <div>
+          <p class="eyebrow">A tiny practical tip</p>
+
+          <h2>
+            Repeated typing is still repetitive work.
+          </h2>
+        </div>
+
+        <div class="experience-copy">
+          <p>
+            TextExpander is an absolute must for me as a developer. It is not a
+            good use of time—or attention—to type the same debugging statements
+            over and over again.
+          </p>
+
+          <p>
+            For example, I can copy a variable name, type a short trigger such
+            as <code>;cl</code>, and expand it into the full
+            <code>console.log()</code> statement.
+          </p>
+
+          <p>
+            It is not glamorous architecture, but removing tiny repeated
+            interruptions makes it easier to stay focused on the actual
+            problem.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section content-block">
+      <div class="section-heading section-heading-narrow">
+        <div>
+          <p class="eyebrow">Things that broke</p>
+
+          <h2>
+            The useful lessons were hiding inside the failures.
+          </h2>
+        </div>
+
+        <p>
+          DocBot’s first working version was built through several problems
+          that forced the architecture to become clearer.
+        </p>
+      </div>
+
+      <div class="strength-grid">
+        <article class="strength-card">
+          <span class="card-number">01 · AUTHENTICATION</span>
+
+          <h3>The wrong GitHub auth model</h3>
+
+          <p>
+            The app originally relied on a personal-access-token approach. That
+            became unreliable for write operations such as creating refs and
+            opening pull requests.
+          </p>
+
+          <ul>
+            <li>Moved to GitHub App authentication</li>
+            <li>Separated identity from my personal account</li>
+            <li>Reduced permissions to the capabilities required</li>
+          </ul>
+        </article>
+
+        <article class="strength-card">
+          <span class="card-number">02 · ENVIRONMENT</span>
+
+          <h3>The private key format was wrong</h3>
+
+          <p>
+            The GitHub App private key needed to be stored as a single-line
+            environment value with escaped newlines.
+          </p>
+
+          <ul>
+            <li>Multiline formatting caused signing failures</li>
+            <li>The error appeared as invalid key data</li>
+            <li>Environment representation mattered as much as the key itself</li>
+          </ul>
+        </article>
+
+        <article class="strength-card">
+          <span class="card-number">03 · NEXT.JS BOUNDARIES</span>
+
+          <h3>Client code imported server-only logic</h3>
+
+          <p>
+            A client component directly imported GitHub code that depended on
+            server-only modules, so Next.js attempted to bundle something that
+            should never reach the browser.
+          </p>
+
+          <ul>
+            <li>Moved GitHub work behind server routes</li>
+            <li>Kept secrets on the server</li>
+            <li>Made frontend and application boundaries explicit</li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <section class="section content-block">
+      <div class="experience-card">
+        <div>
+          <p class="eyebrow">Prototype now, scale deliberately</p>
+
+          <h2>
+            Do not add a database simply because a larger system might need one.
+          </h2>
+        </div>
+
+        <div class="experience-copy">
+          <p>
+            For the prototype, GitHub is enough to track what DocBot has already
+            processed. Pull-request links, labels, comments and review history
+            provide a useful audit trail without creating another persistence
+            layer.
+          </p>
+
+          <p>
+            At a larger scale, I would move workflow state, retries, feedback
+            retrieval and reporting into a database. GitHub would still remain
+            the source of truth for the actual documentation change and review
+            evidence.
+          </p>
+
+          <p>
+            The important distinction is between what the prototype needs now
+            and what a production system would need under different load,
+            reliability and multi-organisation requirements.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section content-block">
+      <div class="section-heading">
+        <div>
+          <p class="eyebrow">Before adding cleverness</p>
+
+          <h2>
+            Test the boring parts first.
+          </h2>
+        </div>
+
+        <p>
+          Memory and feedback loops are only useful if the underlying workflow
+          can be trusted.
+        </p>
+      </div>
+
+      <article class="featured-project">
+        <div class="project-copy">
+          <p class="project-kicker">
+            Unit tests · Workflow orchestration · GitHub capabilities
+          </p>
+
+          <h3>
+            New intelligence should not make the basic workflow fragile.
+          </h3>
+
+          <p>
+            Before adding memory, historical feedback and guidance generation,
+            I added unit tests around orchestration and the GitHub capability
+            layer.
+          </p>
+
+          <p>
+            That creates a safer foundation for experimenting with features
+            that are less deterministic. The agent may reason differently as
+            its guidance evolves, but branch creation, file validation and
+            repository operations should remain dependable.
+          </p>
+        </div>
+
+        <div class="project-panel">
+          <div class="code-heading">
+            <span>build-order.txt</span>
+            <span class="code-success">boring on purpose</span>
+          </div>
+
+          <pre><code>1. Make the workflow work
+2. Separate responsibilities
+3. Test deterministic capabilities
+4. Add feedback collection
+5. Add memory and retrieval
+6. Measure whether it actually improved</code></pre>
+
+          <div class="pull-request-card">
+            <span class="pr-icon">✓</span>
+
+            <div>
+              <strong>Reliable foundations first</strong>
+              <p>Then make the system cleverer</p>
+            </div>
+          </div>
+        </div>
+      </article>
+    </section>
+
+    <section class="contact-section content-block">
+      <div>
+        <p class="eyebrow">Still thinking</p>
+
+        <h2>
+          These notes will keep changing as the work does.
+        </h2>
+      </div>
+
+      <div class="contact-copy">
+        <p>
+          The finished project shows what I built. These notes show how I
+          reasoned about it, what failed and which ideas were worth carrying
+          into the next problem.
+        </p>
+
+        <div class="contact-links">
+          <a class="button button-primary" href="/kb-docbot">
+            Explore KB DocBot
+          </a>
+
+          <a class="button button-light" href="/workbench">
+            Back to the workbench
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <p>Built by Karen McCrann in Ireland.</p>
+    <p>Support brain. Engineering tools. Far too many questions.</p>
+  </footer>
+
+  <script src="./navbar.js"></script>
+
+  <script>
+    window.renderNavbar('site-header')
+  </script>
+</body>
+</html>
