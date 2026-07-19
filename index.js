@@ -21,7 +21,14 @@ const MIME_TYPES = {
 
 function resolvePath(urlPath) {
 	const normalized = urlPath === '/' ? '/index.html' : urlPath;
-	const decoded = decodeURIComponent(normalized.split('?')[0]);
+	let decoded;
+
+	try {
+		decoded = decodeURIComponent(normalized.split('?')[0]);
+	} catch {
+		return null;
+	}
+
 	const targetPath = path.normalize(path.join(ROOT_DIR, decoded));
 
 	if (!targetPath.startsWith(ROOT_DIR)) {
@@ -32,6 +39,12 @@ function resolvePath(urlPath) {
 }
 
 const server = http.createServer((req, res) => {
+	if ((req.url || '').split('?')[0] === '/health') {
+		res.writeHead(200, { 'Content-Type': 'application/json; charset=utf-8' });
+		res.end(JSON.stringify({ ok: true }));
+		return;
+	}
+
 	const targetPath = resolvePath(req.url || '/');
 
 	if (!targetPath) {
@@ -55,6 +68,6 @@ const server = http.createServer((req, res) => {
 	});
 });
 
-server.listen(PORT, '0.0.0.0', () => {
+server.listen(PORT, () => {
 	console.log(`Portfolio server listening on port ${PORT}`);
 });
