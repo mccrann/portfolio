@@ -6,6 +6,7 @@
     "node": "24.x"
   },
   "scripts": {
+    "start": "node index.js",
     "start:http": "python3 -m http.server 8000",
     "cypress:run": "cypress run",
     "test": "start-server-and-test start:http 8000 cypress:run"
